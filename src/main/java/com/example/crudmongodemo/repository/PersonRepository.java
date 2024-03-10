@@ -14,6 +14,9 @@ public interface PersonRepository extends MongoRepository<Person,String> {
     //this will work, but we can se how to do with query
     //List<Person> findByAgeBetween(Integer min ,Integer max);
 
-    @Query(value = "{'age': {$gt: ?0 , $lt : ?1}}")
+
+    // 1 in field means need 0 means not needed
+    @Query(value = "{'age': {$gt: ?0 , $lt : ?1}}",
+    fields = "{firstName :1}")
     List<Person> findPersonByAgeBetween(Integer min,Integer max);
 }
